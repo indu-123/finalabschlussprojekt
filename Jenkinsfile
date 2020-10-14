@@ -6,7 +6,10 @@ pipeline {
     stages {
         stage('MVN compile') {
             steps {
-                echo 'compile'
+                echo "${WORKSPACE}"
+                script{
+                    mvn.compile()
+                }
             }
          }
         stage('unit tests') {
