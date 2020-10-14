@@ -17,9 +17,13 @@ pipeline {
                 echo 'unit tests'
             }
          }
-        stage('nexus upload') {
+        stage('verify sonar:sonar') {
             steps {
-            	echo 'nexus upload'
+            	script{
+                    withCredentials([usernamePassword(credentialsId: 'sonar', passwordVariable: 'sonar_password', usernameVariable: 'sonar_user')]) {
+                      mvn.verify()
+                    }
+            	}
             }
         }
         stage('artifact package') {
