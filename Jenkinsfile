@@ -15,7 +15,9 @@ pipeline {
          }
         stage('unit tests') {
             steps {
-                echo 'unit tests'
+                script{
+                    mvn.test()
+                }
             }
          }
         stage('verify sonar:sonar') {
