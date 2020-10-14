@@ -22,13 +22,14 @@ pipeline {
          }
         stage('verify sonar:sonar') {
             steps {
-            	script{
-                    withCredentials([usernamePassword(credentialsId: 'sonar', passwordVariable: 'sonar_password', usernameVariable: 'sonar_user')]) {
+                withCredentials([usernamePassword(credentialsId: 'sonar', passwordVariable: 'sonar_password', usernameVariable: 'sonar_user')]){
+                }
+                script{
                       mvn.verify()
                     }
             	}
             }
-        }
+        
         stage('artifact package') {
             steps {
                 echo 'artifact package'
