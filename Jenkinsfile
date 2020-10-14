@@ -4,6 +4,11 @@ pipeline {
         NEXUS_HOST = 'nexus:8081'
     }
     stages {
+        stage('MVN compile') {
+            steps {
+                echo 'compile'
+            }
+         }
         stage('unit tests') {
             steps {
                 echo 'unit tests'
@@ -19,19 +24,14 @@ pipeline {
                 echo 'artifact package'
             }
         }
-        stage('container runs') {
+        stage('deploy to Nexus') {
             steps {
-            	echo 'container runs'
+            	echo 'is deployed'
             }
         }
         stage('integration tests') {
             steps {
             	echo 'integration tests'
-            }
-        }
-        stage('container stops') {
-            steps {
-            	echo 'container stops'
             }
         }
     }
