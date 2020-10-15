@@ -29,7 +29,9 @@ pipeline {
         }
         stage('artifact package') {
             steps {
-                echo 'artifact package'
+                script{
+                    mvn.artifactpackage()
+                }
             }
         }
         stage('deploy to Nexus') {
@@ -39,7 +41,7 @@ pipeline {
         }
         stage('deploy to Tomcat') {
             steps {
-            	echo 'integration tests'
+            	echo 'deploy to Tomcat'
             }
         }
     }
