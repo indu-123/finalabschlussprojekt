@@ -12,7 +12,7 @@ pipeline {
                     mvn.compile()
                 }
             }
-         }
+        }
         stage('unit tests') {
             steps {
                 script{
@@ -22,10 +22,11 @@ pipeline {
          }
         stage('verify sonar:sonar') {
             steps {
-                echo 'artifact package'
+                script{
+                    mvn:verify()
+                }
             }
         }
-        
         stage('artifact package') {
             steps {
                 echo 'artifact package'
