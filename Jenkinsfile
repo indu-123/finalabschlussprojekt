@@ -23,7 +23,7 @@ pipeline {
         stage('verify sonar:sonar') {
             steps {
                 script{
-                    mvn:verify()
+                    mvn.verify()
                 }
             }
         }
