@@ -22,13 +22,9 @@ pipeline {
          }
         stage('verify sonar:sonar') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'sonar', passwordVariable: 'sonar_password', usernameVariable: 'sonar_user')]){
-                }
-                script{
-                      mvn.verify()
-                    }
-            	}
+                echo 'artifact package'
             }
+        }
         
         stage('artifact package') {
             steps {
@@ -40,7 +36,7 @@ pipeline {
             	echo 'is deployed'
             }
         }
-        stage('integration tests') {
+        stage('deploy to Tomcat') {
             steps {
             	echo 'integration tests'
             }
